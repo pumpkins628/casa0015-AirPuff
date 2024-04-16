@@ -1,0 +1,118 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shengyu_weather_forecast/pages/map/page/city_air_quality_page.dart';
+import 'package:shengyu_weather_forecast/pages/map/page/forecast_chart_page.dart';
+import 'package:shengyu_weather_forecast/pages/map/page/map_page1.dart';
+import 'package:shengyu_weather_forecast/util/colours.dart';
+
+class Taber extends StatefulWidget {
+  const Taber({Key? key}) : super(key: key);
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _TaberState createState() => _TaberState();
+}
+
+class _TaberState extends State<Taber> {
+  static const double _imageSize = 40;
+  late List<Widget> _pageList;
+  final PageController _pageController = PageController();
+  late List<BottomNavigationBarItem>? _list;
+
+  int currentIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    initData();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  void initData() {
+    _pageList = [
+      const CityAirQualityPage(),
+      const MapPage1(),
+      const ForecastChartPage(),
+    ];
+  }
+
+  static List<List<StatelessWidget>> tabImages = [
+    [
+      SvgPicture.asset(
+        'assets/images/location2.svg',
+        width: _imageSize,
+      ),
+      SvgPicture.asset(
+        'assets/images/location1.svg',
+        width: _imageSize,
+      ),
+    ],
+    [
+      SvgPicture.asset(
+        'assets/images/map2.svg',
+        width: _imageSize,
+      ),
+      SvgPicture.asset(
+        'assets/images/map1.svg',
+        width: _imageSize,
+      ),
+    ],
+    [
+      SvgPicture.asset(
+        'assets/images/history2.svg',
+        width: _imageSize,
+      ),
+      SvgPicture.asset(
+        'assets/images/history1.svg',
+        width: _imageSize,
+      ),
+    ],
+  ];
+
+  List<BottomNavigationBarItem> _buildBottomNavigationBarItem() {
+    _list = List.generate(3, (index) {
+      return BottomNavigationBarItem(
+        icon: tabImages[index][0],
+        activeIcon: tabImages[index][1],
+        label: '',
+      );
+    });
+    return _list!;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.white,
+          items: _buildBottomNavigationBarItem(),
+          type: BottomNavigationBarType.fixed,
+          currentIndex: currentIndex,
+          elevation: 5.0,
+          iconSize: 21.0,
+          selectedFontSize: 10,
+          unselectedFontSize: 10,
+          selectedItemColor: Theme.of(context).primaryColor,
+          unselectedItemColor: Colours.dark_unselected_item_color,
+          onTap: (index) {
+            _pageController.jumpToPage(index);
+          },
+        ),
+        // 使用PageView的原因参看 https://zhuanlan.zhihu.com/p/58582876
+        body: PageView(
+          physics: const NeverScrollableScrollPhysics(), // 禁止滑动
+          controller: _pageController,
+          onPageChanged: (int index) {
+            setState(() {
+              currentIndex = index;
+            });
+          },
+          children: _pageList,
+        ));
+  }
+}
