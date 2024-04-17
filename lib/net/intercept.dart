@@ -49,7 +49,7 @@ class LoggingInterceptor extends Interceptor {
     } else {
       Log.e('ResponseCode: ${response.statusCode}');
     }
-    // 输出结果
+    // output
     Log.json(response.data.toString());
     Log.d('----------End: $duration 毫秒----------');
     super.onResponse(response, handler);
@@ -67,10 +67,8 @@ class AdapterInterceptor extends Interceptor {
   static const String _kSlash = "'";
   static const String _kMessage = 'message';
 
-  static const String _kDefaultText =
-      'There is no backward information'; //无返回信息
-  static const String _kNotFound =
-      'The query information was not found'; //未找到查询信息
+  static const String _kDefaultText = 'There is no backward information';
+  static const String _kNotFound = 'The query information was not found';
 
   static const String _kFailureFormat = '{"code":%d,"message":"%s"}';
   static const String _kSuccessFormat = '{"code":0,"data":%s,"message":""}';
@@ -94,7 +92,6 @@ class AdapterInterceptor extends Interceptor {
     String result;
     String content = response.data?.toString() ?? '';
 
-    /// 成功时，直接格式化返回
     if (response.statusCode == ExceptionHandle.success ||
         response.statusCode == ExceptionHandle.success_not_content) {
       if (content.isEmpty) {
@@ -104,12 +101,10 @@ class AdapterInterceptor extends Interceptor {
       response.statusCode = ExceptionHandle.success;
     } else {
       if (response.statusCode == ExceptionHandle.not_found) {
-        /// 错误数据格式化后，按照成功数据返回
         result = sprintf(_kFailureFormat, [response.statusCode, _kNotFound]);
         response.statusCode = ExceptionHandle.success;
       } else {
         if (content.isEmpty) {
-          // 一般为网络断开等异常
           result = content;
         } else {
           String msg;
@@ -125,22 +120,20 @@ class AdapterInterceptor extends Interceptor {
             } else if (map.containsKey(_kMsg)) {
               msg = map[_kMsg] as String;
             } else {
-              msg = '未知异常';
+              msg = 'Unknown error';
             }
             result = sprintf(_kFailureFormat, [response.statusCode, msg]);
-            // 401 token失效时，单独处理，其他一律为成功
+
             if (response.statusCode == ExceptionHandle.unauthorized) {
               response.statusCode = ExceptionHandle.unauthorized;
             } else {
               response.statusCode = ExceptionHandle.success;
             }
           } catch (e) {
-//            Log.d('异常信息：$e');
-            // 解析异常直接按照返回原数据处理（一般为返回500,503 HTML页面代码）
             result = sprintf(_kFailureFormat, [
               response.statusCode,
               'Server exception(${response.statusCode})'
-            ]); //服务器异常
+            ]);
           }
         }
       }

@@ -2,9 +2,7 @@ import 'package:shengyu_weather_forecast/mvp/base_page.dart';
 import 'package:shengyu_weather_forecast/mvp/base_page_presenter.dart';
 import 'package:shengyu_weather_forecast/mvp/base_presenter.dart';
 
-/// 管理多个Presenter，实现复用。
 class PowerPresenter<IMvpView> extends BasePresenter {
-
   PowerPresenter(BasePageMixin state) {
     _state = state;
   }
@@ -41,10 +39,10 @@ class PowerPresenter<IMvpView> extends BasePresenter {
 
   @override
   void didUpdateWidgets<W>(W oldWidget) {
-
     void didUpdateWidgets(BasePagePresenter presenter) {
       presenter.didUpdateWidgets<W>(oldWidget);
     }
+
     _presenters.forEach(didUpdateWidgets);
   }
 
@@ -65,5 +63,4 @@ class PowerPresenter<IMvpView> extends BasePresenter {
   void _initState(BasePagePresenter presenter) {
     presenter.initState();
   }
-
 }

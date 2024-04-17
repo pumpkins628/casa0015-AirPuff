@@ -13,7 +13,6 @@ import 'package:sp_util/sp_util.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  /// sp初始化
   await SpUtil.getInstance();
   SpUtil.putBool(Constant.isLoginYunXin, false);
 
@@ -37,29 +36,23 @@ class _MyAppState extends State<MyApp> {
     Log.init();
     initDio();
     Routes.initRoutes();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-    });
+    WidgetsBinding.instance.addPostFrameCallback((_) {});
   }
 
   void initDio() {
-    /// 加载网络请求头+token
     final List<Interceptor> interceptors = <Interceptor>[];
 
-    /// 统一添加身份验证请求头+token
     interceptors.add(AuthInterceptor());
 
-    /// 打印Log(生产模式去除)
     if (!Constant.inProduction) {
       interceptors.add(LoggingInterceptor());
     }
 
-    /// 适配数据(根据自己的数据结构，可自行选择添加)
     interceptors.add(AdapterInterceptor());
     configDio(
       interceptors: interceptors,
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -75,13 +68,11 @@ class _MyAppState extends State<MyApp> {
           fontFamily: 'Roboto',
           useMaterial3: true,
         ),
-
         navigatorKey: MyApp.navigatorKey,
         onGenerateRoute: Routes.router.generator,
         home: const DefaultTextStyle(
           style: TextStyle(color: Colors.black, fontSize: 14),
-          child: Taber()
-              ,
+          child: Taber(),
         ),
       ),
     );

@@ -4,7 +4,7 @@ import 'package:shengyu_weather_forecast/util/colours.dart';
 import 'package:shengyu_weather_forecast/util/my_button.dart';
 import 'package:shengyu_weather_forecast/util/theme_util.dart';
 
-/// 自定义AppBar
+/// Set AppBar
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MyAppBar({
     Key? key,

@@ -2,10 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shengyu_weather_forecast/util/image_util.dart';
 
-/// 加载网络图片(加载过得从缓存中获取)
 class LoadImage extends StatelessWidget {
-
-  const LoadImage(this.image, {
+  const LoadImage(
+    this.image, {
     Key? key,
     this.width,
     this.height,
@@ -27,9 +26,9 @@ class LoadImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     if (image.isNotEmpty || image.startsWith('http')) {
-      final Widget holder = LoadAssetImage(holderImg, height: height, width: width, fit: fit);
+      final Widget holder =
+          LoadAssetImage(holderImg, height: height, width: width, fit: fit);
       return CachedNetworkImage(
         imageUrl: image,
         placeholder: (_, __) => holder,
@@ -41,8 +40,9 @@ class LoadImage extends StatelessWidget {
         memCacheHeight: cacheHeight,
       );
     } else {
-      return LoadAssetImage(holderImg,
-        height: height ,
+      return LoadAssetImage(
+        holderImg,
+        height: height,
         width: width,
         fit: fit,
         format: format,
@@ -53,19 +53,17 @@ class LoadImage extends StatelessWidget {
   }
 }
 
-/// 加载本地资源图片
 class LoadAssetImage extends StatelessWidget {
-
-  const LoadAssetImage(this.image, {
-    Key? key,
-    this.width,
-    this.height,
-    this.cacheWidth,
-    this.cacheHeight,
-    this.fit,
-    this.format = ImageFormat.png,
-    this.color
-  }): super(key: key);
+  const LoadAssetImage(this.image,
+      {Key? key,
+      this.width,
+      this.height,
+      this.cacheWidth,
+      this.cacheHeight,
+      this.fit,
+      this.format = ImageFormat.png,
+      this.color})
+      : super(key: key);
 
   final String image;
   final double? width;
@@ -78,7 +76,6 @@ class LoadAssetImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Image.asset(
       ImageUtils.getImgPath(image, format: format),
       height: height,

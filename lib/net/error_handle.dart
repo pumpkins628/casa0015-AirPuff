@@ -23,16 +23,20 @@ class ExceptionHandle {
   static const int unknown_error = 9999;
 
   static final Map<int, NetError> _errorMap = <int, NetError>{
-    net_error             :   NetError(net_error, '网络异常，请检查你的网络！'),
-    parse_error           :   NetError(parse_error, '数据解析错误！'),
-    socket_error          :   NetError(socket_error, '网络异常，请检查你的网络！'),
-    http_error            :   NetError(http_error, '服务器异常，请稍后重试！'),
-    connect_timeout_error :   NetError(connect_timeout_error, '连接超时！'),
-    send_timeout_error    :   NetError(send_timeout_error, '请求超时！'),
-    // receive_timeout_error :   NetError(receive_timeout_error, '响应超时！'),
-    receive_timeout_error :   NetError(receive_timeout_error, 'Response timeout!'),
-    cancel_error          :   NetError(cancel_error, '取消请求'),
-    unknown_error         :   NetError(unknown_error, '未知异常'),
+    net_error:
+        NetError(net_error, 'Network exception, please check your network!'),
+    parse_error: NetError(parse_error, 'Data parsing error!'),
+    socket_error:
+        NetError(socket_error, 'Network exception, please check your network!'),
+    http_error:
+        NetError(http_error, 'Server exception, please try again later!'),
+    connect_timeout_error:
+        NetError(connect_timeout_error, 'Connection timeout!'),
+    send_timeout_error: NetError(send_timeout_error, 'Request timed out!'),
+    // receive_timeout_error :   NetError(receive_timeout_error, 'Response time out!'),
+    receive_timeout_error: NetError(receive_timeout_error, 'Response timeout!'),
+    cancel_error: NetError(cancel_error, 'Cancel request'),
+    unknown_error: NetError(unknown_error, 'Unknown error'),
   };
 
   static NetError handleException(dynamic error) {
@@ -63,8 +67,7 @@ class ExceptionHandle {
   }
 }
 
-class NetError{
-
+class NetError {
   NetError(this.code, this.msg);
 
   int code;
@@ -73,13 +76,13 @@ class NetError{
 
 extension DioErrorTypeExtension on DioExceptionType {
   int get errorCode => [
-    ExceptionHandle.connect_timeout_error,
-    ExceptionHandle.send_timeout_error,
-    ExceptionHandle.receive_timeout_error,
-    0,
-    0,
-    ExceptionHandle.cancel_error,
-    0,
-    ExceptionHandle.unknown_error,
-  ][index];
+        ExceptionHandle.connect_timeout_error,
+        ExceptionHandle.send_timeout_error,
+        ExceptionHandle.receive_timeout_error,
+        0,
+        0,
+        ExceptionHandle.cancel_error,
+        0,
+        ExceptionHandle.unknown_error,
+      ][index];
 }

@@ -2,7 +2,6 @@ import 'package:shengyu_weather_forecast/generated/json/base/json_convert_conten
 import 'package:shengyu_weather_forecast/util/cache_event_identification.dart';
 
 class BaseEntity<T> {
-
   BaseEntity(this.code, this.message, this.data);
 
   BaseEntity.fromJson(Map<String, dynamic> json) {
@@ -23,7 +22,6 @@ class BaseEntity<T> {
     } else if (T.toString() == 'Map<dynamic, dynamic>') {
       return json as T;
     } else {
-      /// List类型数据由fromJsonAsT判断处理
       return JsonConvert.fromJsonAsT<T>(json);
     }
   }

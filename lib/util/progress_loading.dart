@@ -1,32 +1,34 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-/// 加载中的弹框
 class ProgressDialog extends Dialog {
-
   const ProgressDialog({
     Key? key,
     this.hintText = '',
-  }):super(key: key);
+  }) : super(key: key);
 
   final String hintText;
 
   @override
   Widget build(BuildContext context) {
-
     final Widget progress = Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Theme(
           data: ThemeData(
             cupertinoOverrideTheme: const CupertinoThemeData(
-              brightness: Brightness.dark, // 局部指定夜间模式，加载圈颜色会设置为白色
+              brightness: Brightness.dark,
             ),
           ),
           child: const CupertinoActivityIndicator(radius: 14.0),
         ),
-       const SizedBox(height: 8,),
-        Text(hintText, style: const TextStyle(color: Colors.white),)
+        const SizedBox(
+          height: 8,
+        ),
+        Text(
+          hintText,
+          style: const TextStyle(color: Colors.white),
+        )
       ],
     );
 
