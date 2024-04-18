@@ -8,7 +8,6 @@ import 'package:sp_util/sp_util.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  /// sp初始化
   await SpUtil.getInstance();
   runApp(const MyApp());
 }
@@ -30,7 +29,6 @@ class _MyAppState extends State<MyApp> {
     Routes.initRoutes();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return OKToast(
@@ -45,13 +43,11 @@ class _MyAppState extends State<MyApp> {
           fontFamily: 'Roboto',
           useMaterial3: true,
         ),
-
         navigatorKey: MyApp.navigatorKey,
         onGenerateRoute: Routes.router.generator,
         home: const DefaultTextStyle(
           style: TextStyle(color: Colors.black, fontSize: 14),
-          child: Taber()
-              ,
+          child: Taber(),
         ),
       ),
     );

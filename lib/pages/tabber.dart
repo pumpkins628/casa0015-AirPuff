@@ -26,7 +26,7 @@ class _TaberState extends State<Taber> {
     super.initState();
     initData();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      /// 请求位置权限
+      /// Get Location
       await _getCurrentLocation();
     });
   }
@@ -60,8 +60,6 @@ class _TaberState extends State<Taber> {
     ];
   }
 
-
-
   List<BottomNavigationBarItem> _buildBottomNavigationBarItem() {
     _list = List.generate(3, (index) {
       return BottomNavigationBarItem(
@@ -92,7 +90,7 @@ class _TaberState extends State<Taber> {
           },
         ),
         body: PageView(
-          physics: const NeverScrollableScrollPhysics(), // 禁止滑动
+          physics: const NeverScrollableScrollPhysics(), // Cannot move
           controller: _pageController,
           onPageChanged: (int index) {
             setState(() {

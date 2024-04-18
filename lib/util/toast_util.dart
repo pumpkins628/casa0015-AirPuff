@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 
-/// Toast工具类
+/// Toast
 class Toast {
   static void show(String? msg, {int duration = 2000}) {
     if (msg == null) {

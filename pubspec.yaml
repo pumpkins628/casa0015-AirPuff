@@ -1,6 +1,6 @@
 name: air_puff
 description: A new Flutter project.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none' 
 
 version: 1.0.0+1
 
@@ -36,13 +36,13 @@ dependencies:
   # Toast https://github.com/OpenFlutter/flutter_oktoast
   oktoast: ^3.3.1
 
-  #  https://github.com/rrousselGit/provider
+  # State management https://github.com/rrousselGit/provider
   provider: ^6.0.5
 
-  # 广播通知
+  # Notification
   event_bus: 2.0.0
 
-  # 权限
+  # Permission
   permission_handler: ^11.0.1
 
   webview_flutter: ^2.0.13

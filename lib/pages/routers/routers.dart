@@ -12,11 +12,10 @@ class Routes {
   static final FluroRouter router = FluroRouter();
 
   static void initRoutes() {
-    /// 指定路由跳转错误返回页
     router.notFoundHandler = Handler(
         handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
-      debugPrint('未找到目标页');
-      return ;
+      debugPrint('Target page not found');
+      return;
     });
 
     router.define(home,
@@ -27,7 +26,6 @@ class Routes {
 
     _listRouter.clear();
 
-    /// 初始化路由
     void initRouter(IRouterProvider routerProvider) {
       routerProvider.initRouter(router);
     }

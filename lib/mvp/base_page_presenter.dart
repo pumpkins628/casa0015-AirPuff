@@ -12,11 +12,8 @@ class BasePagePresenter<V extends IMvpView> extends BasePresenter<V> {
 
   @override
   void dispose() {
-    /// 销毁时，将请求取消
-    // print(_cancelToken.isCancelled);
     if (!_cancelToken.isCancelled) {
       _cancelToken.cancel();
     }
   }
-
 }

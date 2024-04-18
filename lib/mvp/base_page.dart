@@ -27,7 +27,6 @@ mixin BasePageMixin<T extends StatefulWidget, P extends BasePresenter>
 
   @override
   void showProgress() {
-    /// 避免重复弹出
     if (mounted && !_isShowDialog) {
       _isShowDialog = true;
       try {
@@ -35,13 +34,11 @@ mixin BasePageMixin<T extends StatefulWidget, P extends BasePresenter>
           context: context,
           barrierDismissible: false,
           barrierColor: const Color(0x00FFFFFF),
-          // 默认dialog背景色为半透明黑色，这里修改为透明（1.20添加属性）
           builder: (_) {
             return const SizedBox();
           },
         );
       } catch (e) {
-        /// 异常原因主要是页面没有build完成就调用Progress。
         debugPrint(e.toString());
       }
     }

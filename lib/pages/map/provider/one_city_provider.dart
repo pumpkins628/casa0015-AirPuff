@@ -12,7 +12,6 @@ class OneCityProvider extends ChangeNotifier {
     airModel = model.data;
     cityNameController.text = airModel?.city?.name ?? '';
 
-    /// 将model写在缓存里
     if (airModel != null) {
       SpUtil.putObject('airModel', airModel!);
     }
