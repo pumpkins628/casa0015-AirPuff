@@ -6,9 +6,6 @@ on:
     # tags:
     # - "v*.*.*"          # In this case when you tag your commit with v1.0.0 for example
 
-defaults:  
-  run:
-    working-directory: APP_DIRECTORY
 
 jobs:
   build:
