@@ -28,7 +28,7 @@ dependencies:
   sp_util: 2.0.3
 
   # Obtain the current device information https://github.com/fluttercommunity/plus_plugins/tree/main/packages/device_info_plus
-  device_info_plus: ^10.1.0
+  device_info_plus: ^9.1.2
 
   # Routing framework https://github.com/theyakka/fluro
   fluro: ^2.0.5
@@ -45,24 +45,24 @@ dependencies:
   # Permission
   permission_handler: ^11.0.1
 
-  webview_flutter: ^4.7.0
+  webview_flutter: ^2.8.0
 
   google_maps_flutter: ^2.6.0
 
   map_launcher: ^3.1.0
 
-  geolocator: ^11.0.0
+  geolocator: ^10.1.1
 
   easy_refresh: ^3.3.5
 
   flutter_svg: ^2.0.10+1
 
-  fl_chart: ^0.67.0
+  fl_chart: ^0.66.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.2
+  flutter_lints: ^2.0.3
 flutter:
 
   uses-material-design: true

@@ -18,7 +18,7 @@ class _MapPage1State extends State<MapPage1>
     <head>
       <style>
         #map {
-          height: 100vh; /* 让地图占满整个屏幕高度 */
+          height: 100vh; 
         }
       </style>
     </head>
