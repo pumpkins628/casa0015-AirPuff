@@ -21,7 +21,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '11'
-          distribution: 'adopt'
+          distribution: microsoft
 
       #  Decode keystore File from repository secrets
       #  Keep the keystore file private; don't check it into public source control!
@@ -49,7 +49,7 @@ jobs:
       - name: Install Flutter               # Install Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.3.2' # Use a specific Flutter version
+           channel: 'main'
 
       - name: Get Flutter dependencies      # Get the Libraries and Dependencies
         run: flutter pub get
