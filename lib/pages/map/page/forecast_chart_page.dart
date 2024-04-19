@@ -73,7 +73,7 @@ class _ForecastChartPageState extends State<ForecastChartPage>
                   padding: const EdgeInsets.all(5),
                   child: provider.airModel != null
                       ? Column(
-                          /// 上半部分展示
+                          ///
                           children: [
                             Container(
                               decoration: BoxDecoration(
@@ -89,18 +89,17 @@ class _ForecastChartPageState extends State<ForecastChartPage>
                                   crossAxisAlignment:
                                       CrossAxisAlignment.stretch,
                                   children: <Widget>[
-
                                     const SizedBox(
                                       height: 15,
                                     ),
                                     const Align(
                                         child: Text(
-                                          'Changes in the indices',
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        )),
+                                      'Changes in the indices',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    )),
                                     const SizedBox(
                                       height: 20,
                                     ),
