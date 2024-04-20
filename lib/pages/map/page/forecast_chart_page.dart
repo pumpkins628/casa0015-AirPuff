@@ -1,4 +1,4 @@
-import 'package:easy_refresh/easy_refresh.dart';
+import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -64,161 +64,172 @@ class _ForecastChartPageState extends State<ForecastChartPage>
               ),
               backgroundColor: Colors.blue[200],
             ),
-            body: EasyRefresh(
-              onRefresh: () {
-                getForecastChartData();
+            body: CustomMaterialIndicator(
+              onRefresh: getForecastChartData,
+              indicatorBuilder:
+                  (BuildContext context, IndicatorController controller) {
+                return const Icon(
+                  Icons.ac_unit,
+                  color: Colors.blue,
+                  size: 30,
+                );
               },
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(5),
-                  child: provider.airModel != null
-                      ? Column(
-                          ///
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.blue[50],
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                    color: Colors.blue[200]!,
-                                  )),
-                              padding: const EdgeInsets.only(left: 4, right: 4),
-                              child: AspectRatio(
-                                aspectRatio: 1.23,
-                                child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: <Widget>[
-                                    const SizedBox(
-                                      height: 15,
-                                    ),
-                                    const Align(
-                                        child: Text(
-                                      'Changes in the indices',
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+              child: ListView(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: provider.airModel != null
+                        ? Column(
+                            /// 上半部分展示
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.blue[50],
+                                    borderRadius: BorderRadius.circular(10),
+                                    border: Border.all(
+                                      color: Colors.blue[200]!,
                                     )),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Column(
-                                          children: [
-                                            const Text('O3'),
-                                            const SizedBox(height: 4),
-                                            Container(
-                                              width: 40,
-                                              height: 2,
-                                              color: Colors.green,
-                                            )
-                                          ],
+                                padding:
+                                    const EdgeInsets.only(left: 4, right: 4),
+                                child: AspectRatio(
+                                  aspectRatio: 1.23,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children: <Widget>[
+                                      const SizedBox(
+                                        height: 15,
+                                      ),
+                                      const Align(
+                                          child: Text(
+                                        'Changes in the indices',
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
                                         ),
-                                        const SizedBox(width: 10),
-                                        Column(
-                                          children: [
-                                            const Text('pm10'),
-                                            const SizedBox(height: 4),
-                                            Container(
-                                              width: 40,
-                                              height: 2,
-                                              color: Colors.pink,
-                                            )
-                                          ],
-                                        ),
-                                        const SizedBox(width: 10),
-                                        Column(
-                                          children: [
-                                            const Text('pm2.5'),
-                                            const SizedBox(height: 4),
-                                            Container(
-                                              width: 40,
-                                              height: 2,
-                                              color: Colors.blue,
-                                            )
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            right: 16, left: 6),
-                                        child: _LineChart(
-                                          provider.bottomList,
-                                          provider.o3MaxList,
-                                          provider.pm25MaxList,
-                                          provider.pm10MaxList,
-                                          null,
+                                      )),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          Column(
+                                            children: [
+                                              const Text('O3'),
+                                              const SizedBox(height: 4),
+                                              Container(
+                                                width: 40,
+                                                height: 2,
+                                                color: Colors.green,
+                                              )
+                                            ],
+                                          ),
+                                          const SizedBox(width: 10),
+                                          Column(
+                                            children: [
+                                              const Text('pm10'),
+                                              const SizedBox(height: 4),
+                                              Container(
+                                                width: 40,
+                                                height: 2,
+                                                color: Colors.pink,
+                                              )
+                                            ],
+                                          ),
+                                          const SizedBox(width: 10),
+                                          Column(
+                                            children: [
+                                              const Text('pm2.5'),
+                                              const SizedBox(height: 4),
+                                              Container(
+                                                width: 40,
+                                                height: 2,
+                                                color: Colors.blue,
+                                              )
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      Expanded(
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              right: 16, left: 6),
+                                          child: _LineChart(
+                                            provider.bottomList,
+                                            provider.o3MaxList,
+                                            provider.pm25MaxList,
+                                            provider.pm10MaxList,
+                                            null,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                  ],
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(height: 10),
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.blue[50],
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                    color: Colors.blue[200]!,
-                                  )),
-                              padding: const EdgeInsets.only(left: 4, right: 4),
-                              child: AspectRatio(
-                                aspectRatio: 1.23,
-                                child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: <Widget>[
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    const Align(
-                                        child: Text(
-                                      'Forecast aqi index',
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                              const SizedBox(height: 10),
+                              Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.blue[50],
+                                    borderRadius: BorderRadius.circular(10),
+                                    border: Border.all(
+                                      color: Colors.blue[200]!,
                                     )),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            right: 16, left: 6),
-                                        child: _LineChart(
-                                          provider.bottomList,
-                                          provider.o3MaxList,
-                                          provider.pm25MaxList,
-                                          provider.pm10MaxList,
-                                          provider.aqiList,
+                                padding:
+                                    const EdgeInsets.only(left: 4, right: 4),
+                                child: AspectRatio(
+                                  aspectRatio: 1.23,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children: <Widget>[
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      const Align(
+                                          child: Text(
+                                        'Forecast aqi index',
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      )),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      Expanded(
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              right: 16, left: 6),
+                                          child: _LineChart(
+                                            provider.bottomList,
+                                            provider.o3MaxList,
+                                            provider.pm25MaxList,
+                                            provider.pm10MaxList,
+                                            provider.aqiList,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                  ],
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        )
-                      : const SizedBox(),
-                ),
+                            ],
+                          )
+                        : const SizedBox(),
+                  ),
+                ],
               ),
             ),
           );

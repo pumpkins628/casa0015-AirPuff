@@ -1,4 +1,4 @@
-import 'package:easy_refresh/easy_refresh.dart';
+import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:air_puff/mvp/base_page.dart';
@@ -69,141 +69,151 @@ class _CityAirQualityPageState extends State<CityAirQualityPage>
               ),
               backgroundColor: Colors.blue[200],
             ),
-            body: EasyRefresh(
-              onRefresh: () {
-                getCityAirQualityData();
+            body: CustomMaterialIndicator(
+              onRefresh: getCityAirQualityData,
+              indicatorBuilder:
+                  (BuildContext context, IndicatorController controller) {
+                return const Icon(
+                  Icons.ac_unit,
+                  color: Colors.blue,
+                  size: 30,
+                );
               },
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    /// 上半部分展示
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Row(
+              child: ListView(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      /// 上半部分展示
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          width: 2, color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: TextField(
+                                    controller: provider.cityNameController,
+                                    onSubmitted: (value) {
+                                      getCityAirQualityData();
+                                    },
+                                    decoration: const InputDecoration(
+                                        icon: Padding(
+                                          padding: EdgeInsets.all(3),
+                                          child: Icon(Icons.search,
+                                              color: Colors.grey),
+                                        ),
+                                        border: InputBorder.none,
+                                        contentPadding: EdgeInsets.all(3),
+                                        hintText: 'Please enter city name',
+                                        counterText: ""),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 15),
+                              SizedBox(
+                                  width: 100,
+                                  height: 30,
+                                  child: FilledButton(
+                                    onPressed: () {
+                                      getCityAirQualityData();
+                                    },
+                                    child: const Align(
+                                      child: Text('search'),
+                                    ),
+                                  ))
+                            ],
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Expanded(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        width: 2, color: Colors.grey),
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: TextField(
-                                  controller: provider.cityNameController,
-                                  onSubmitted: (value) {
-                                    getCityAirQualityData();
-                                  },
-                                  decoration: const InputDecoration(
-                                      icon: Padding(
-                                        padding: EdgeInsets.all(3),
-                                        child: Icon(Icons.search,
-                                            color: Colors.grey),
-                                      ),
-                                      border: InputBorder.none,
-                                      contentPadding: EdgeInsets.all(3),
-                                      hintText: 'Please enter city name',
-                                      counterText: ""),
+                            Card(
+                              color: Colors.blue[50],
+                              child: SizedBox(
+                                width: 120,
+                                height: 120,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      (provider.airModel?.aqi ?? 0).toString(),
+                                      style: const TextStyle(fontSize: 50),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
-                            const SizedBox(width: 15),
-                            SizedBox(
-                                width: 100,
-                                height: 30,
-                                child: FilledButton(
-                                  onPressed: () {
-                                    getCityAirQualityData();
-                                  },
-                                  child: const Align(
-                                    child: Text('search'),
+                            Card(
+                                elevation: 4.0,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    children: [
+                                      airQualityIndex(
+                                          'O3',
+                                          (provider.airModel?.iaqi?.o3?.v ?? 0)
+                                              .toString()),
+                                      const SizedBox(height: 10),
+                                      airQualityIndex(
+                                          'PM2.5',
+                                          (provider.airModel?.iaqi?.pm25?.v ??
+                                                  0)
+                                              .toString()),
+                                      const SizedBox(height: 10),
+                                      airQualityIndex(
+                                          'SO2',
+                                          (provider.airModel?.iaqi?.so2?.v ?? 0)
+                                              .toString()),
+                                      const SizedBox(height: 10),
+                                      airQualityIndex(
+                                          'NO2',
+                                          (provider.airModel?.iaqi?.no2?.v ?? 0)
+                                              .toString()),
+                                    ],
                                   ),
-                                ))
+                                )),
                           ],
                         ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Card(
-                            color: Colors.blue[50],
-                            child: SizedBox(
-                              width: 120,
-                              height: 120,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    (provider.airModel?.aqi ?? 0).toString(),
-                                    style: const TextStyle(fontSize: 50),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Card(
+                        const SizedBox(height: 20),
+                        const Align(
+                          child: Text('Suggestions',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25)),
+                        ),
+                        const SizedBox(height: 8),
+                        Column(
+                          children: [
+                            Card(
                               elevation: 4.0,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  children: [
-                                    airQualityIndex(
-                                        'O3',
-                                        (provider.airModel?.iaqi?.o3?.v ?? 0)
-                                            .toString()),
-                                    const SizedBox(height: 10),
-                                    airQualityIndex(
-                                        'PM2.5',
-                                        (provider.airModel?.iaqi?.pm25?.v ?? 0)
-                                            .toString()),
-                                    const SizedBox(height: 10),
-                                    airQualityIndex(
-                                        'SO2',
-                                        (provider.airModel?.iaqi?.so2?.v ?? 0)
-                                            .toString()),
-                                    const SizedBox(height: 10),
-                                    airQualityIndex(
-                                        'NO2',
-                                        (provider.airModel?.iaqi?.no2?.v ?? 0)
-                                            .toString()),
-                                  ],
+                                padding: const EdgeInsets.all(10),
+                                child: Text(
+                                  getSuggestions((provider.airModel?.aqi ?? 0)),
+                                  maxLines: 15,
+                                  overflow: TextOverflow.ellipsis,
+                                  // textAlign: TextAlign.center,
+                                  style:
+                                      const TextStyle(fontSize: 16, height: 2),
                                 ),
-                              )),
-                        ],
-                      ),
-                      const SizedBox(height: 20),
-                      const Align(
-                        child: Text('Suggestions',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25)),
-                      ),
-                      const SizedBox(height: 8),
-                      Column(
-                        children: [
-                          Card(
-                            elevation: 4.0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: Text(
-                                getSuggestions((provider.airModel?.aqi ?? 0)),
-                                maxLines: 15,
-                                overflow: TextOverflow.ellipsis,
-                                // textAlign: TextAlign.center,
-                                style: const TextStyle(fontSize: 16, height: 2),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
+                ],
               ),
             ),
           );

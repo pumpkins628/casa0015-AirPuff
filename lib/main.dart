@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:air_puff/pages/map/page/startup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:air_puff/pages/routers/routers.dart';
@@ -47,7 +48,7 @@ class _MyAppState extends State<MyApp> {
         onGenerateRoute: Routes.router.generator,
         home: const DefaultTextStyle(
           style: TextStyle(color: Colors.black, fontSize: 14),
-          child: Taber(),
+          child: StartupPage(),
         ),
       ),
     );
