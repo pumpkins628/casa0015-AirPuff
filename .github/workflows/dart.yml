@@ -40,10 +40,13 @@ jobs:
         run: |
           VERSION=$(yq .version | grep -Eo '[0-9]+\.[0-9]+\.[0-9]+' pubspec.yaml | head -n 1)
           echo "TAG_VERSION=$VERSION" >> $GITHUB_OUTPUT
-  
+      
       - name: Create git tag
         run: |
-          git tag "v${{ steps.get_flutter_app_version.outputs.TAG_VERSION }}"
+          TAG_VERSION="v${{ steps.get_flutter_app_version.outputs.TAG_VERSION }}-$(date +'%Y%m%d%H%M%S')"
+          git tag $TAG_VERSION
+          echo "TAG=$TAG_VERSION" >> $GITHUB_ENV
+
 
       - name: Install Flutter               # Install Flutter
         uses: subosito/flutter-action@v2
@@ -75,8 +78,8 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "build/app/outputs/bundle/release/*.aab,build/app/outputs/flutter-apk/*.apk"
-          tag: "v${{ steps.get_flutter_app_version.outputs.TAG_VERSION }}"
-          # token: ${{ secrets.PERSONAL_RELEASE_TOKEN }}
+          tag: ${{ env.TAG }}
+    # token: ${{ secrets.PERSONAL_RELEASE_TOKEN }}
 
   # TODO:  Upload to Firebase - for App Distribution
   # Release job, upload the apk or aab to Firebase App Distribution
