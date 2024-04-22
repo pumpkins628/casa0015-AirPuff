@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App介绍页面</title>
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .bg-image {
+            /* 使用相对路径引用同一文件夹下的背景图片 */
+            background-image: url('picture.jpg');
+            filter: blur(8px);
+            /* 轻微模糊效果 */
+            -webkit-filter: blur(8px);
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+
+        .content-container {
+            background-color: rgba(255, 255, 255, 0.6);
+            /* 半透明的白色遮罩层 */
+            color: #555;
+            font-size: 20px;
+            border-radius: 8px;
+            padding: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 50%;
+            background-color: rgba(255, 255, 255, 0.9);
+            /* 提高不透明度以提升可读性 */
+            padding: 40px;
+            /* 增加内边距 */
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .overview-section {
+            text-align: center;
+            padding: 4em 0;
+            /* 上下留出空间 */
+            background: #fff;
+            /* 可以根据需要设置背景颜色 */
+        }
+
+        .overview-section h2 {
+            font-size: 50px;
+            font-weight: 1400;
+            /* 加粗Overview标题 */
+            color: gray;
+            /* 给标题添加颜色 */
+            margin-bottom: 1em;
+        }
+
+        .overview-image {
+            max-width: 80%;
+            /* 图片最大宽度，可以根据需要调整 */
+            height: auto;
+            /* 图片高度自动 */
+            margin-bottom: 1em;
+            border-radius: 8px;
+            /* 圆角边框 */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-image"></div>
+    <div class="content-container">
+        <h1>Welcome to AirPuff</h1>
+        <p>Airpuff is a specially designed app that provides real-time air quality information, displaying the Air
+            Quality Index (AQI) and other crucial environmental data for your area. Hope it can protect you and your
+            family anytime</p>
+        <a href="https://github.com/pumpkins628/casa0015-AirPuff/actions" class="button">Download now</a>
+        <a href="https://github.com/pumpkins628/casa0015-AirPuff/blob/main/README.md" class="button">Learn more</a>
+    </div>
+    <div class="overview-section">
+        <h2>Overview</h2>
+        <img src="overview.jpg" alt="Overview Image" class="overview-image">
+        <!-- 替换成你的Overview图片路径 -->
+        <p>contact us by email: pumpkins628@163.com</p>
+    </div>
+</body>
+
+</html>
