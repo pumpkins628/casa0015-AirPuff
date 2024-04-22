@@ -42,18 +42,49 @@
 &nbsp;&nbsp;&nbsp;&nbsp;Upon first accessing the map interface, the Air Quality Index (AQI) for your current location is displayed automatically. If you wish to learn about the air quality in other areas, simply click on the desired region on the map, and wait a moment to receive the current air quality data for that area.
 
 ## Key feature
-- **Searh** 🔍 - 
-- **Map** 🗺️ - 
-- **Forecast chart** 📈 - 
--  **Prompt error**⚠️
--  **Suggestions**📝
+- **Searh** 🔍 - You can search any city worldwide to get data
+- **Map** 🗺️ - Find where you are and anywhere you want to know the AQI
+- **Forecast chart** 📈 - know little changes of data
+-  **Prompt error**⚠️ - When you enter an error message, the system will prompt you
+-  **Suggestions**📝 - Give travel advice
 
 
-## How to install(clone+具体版本信息）
+## How to install
 
+### For user 😊
 
-## Feature development
+1. Copy the following link to download the APK file.
+     [Landing Page](https://pumpkins628.github.io/AirPuff_web.io/)
+3. Locate the file on your device and tap to install (Note: You may need to enable the installation of apps from unknown sources in your device settings).
+4. Open the installed application and follow the on-screen instructions to complete the initial setup.
+
+### For developer 👨‍💻
+
+1. Clone repositroy
+   ```bash
+   git clone https://github.com/pumpkins628/casa0015-AirPuff.git
+2. Enter the code base directory from the command line
+   ```bash
+   cd casa0015-AirPuff
+3. Install all necessary dependencies
+   ```bash
+   flutter pub get
+ ⚠️ATTENTION:You need to make sure you're using the suitable version for flutter (like these)
+   ```
+   Flutter 3.16.4 • channel stable • https://github.com/flutter/flutter.git
+   Framework • revision 2e9cb0aa71 (4 months ago) • 2023-12-11 14:35:13 -0700
+   Engine • revision 54a7145303
+   Tools • Dart 3.2.3 • DevTools 2.28.4
+  ```
+## Feature development✈
+1.Add a "Return" button on the map: Implement a return button on the map interface. Users can quickly return to their current location and retrieve information when they click it.
+<br>
+2.Add a user login interface: Implement a user login interface to allow for more personalized settings.
+
 
 ##  Contact Details
 
-Having Contact Details is also good as it shows people how to get in contact with you if they'd like to contribute to the app. 
+Please feel free to contact me if you have any idea to improve this applaction!
+<br>
+📫：pumpkins628@163.com
+
