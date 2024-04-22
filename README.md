@@ -1,4 +1,4 @@
-# AirPuff（introduction+video）
+# AirPuff
 
 
 ## Your Air Quality Monitoring Expert :thumbsup:
@@ -9,27 +9,44 @@
  `Click on the image below to view the app operation video`
 
 <p align="center">
-  <a href="https://github.com/pumpkins628/casa0015-AirPuff/assets/146323702/8f7e391d-4c0b-401f-8090-d527d7790591">
-    <img alt="Watch the video" src="https://github.com/pumpkins628/casa0015-AirPuff/assets/146323702/8f4b6b97-464f-4cd1-91b3-80c3089ebe6a" style="width:50%; height:auto;"/>
+  <a href="https://github.com/pumpkins628/casa0015-AirPuff/assets/146323702/2b659380-1248-47a2-addd-15b64a49c8e9">
+    <img alt="Watch the video" src="https://github.com/pumpkins628/casa0015-AirPuff/assets/146323702/35811369-a747-4347-a621-f2963f03de0c" style="width:50%; height:auto;"/>
   </a>
 </p>
 
 
 
-## design idea（picture+framework） 
+## Design idea :bulb:
 
-Use this section to show us what your Mobile App is about.   Include a Screenshot to the App, link to the various frameworks you've used. Include your presentation video here that shows off your Mobile App.   Emojis are also fun to include 📱 😄
+### First sketch :page_facing_up:
 
-Look at some other Flutter Apps online and see how they use there README File.  Good examples are:
+<img src="https://github.com/pumpkins628/casa0015-AirPuff/assets/146323702/027bdb20-4323-4293-9479-34b43818707a" width="50%" height="auto"/>
 
-- https://github.com/miickel/flutter_particle_clock
-- https://github.com/Tarikul711/flutter-food-delivery-app-ui    
-- https://github.com/mohak1283/Instagram-Clone
+### Screen shot
+<br>
 
+![screen](https://github.com/pumpkins628/casa0015-AirPuff/assets/146323702/e3f1bdf5-8321-4250-9589-bdb529fb5d4f)
+
+<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The interface provides a comprehensive search function that allows you to inquire about the air quality data and related indexes of any city you're interested in. It also offers pertinent travel advice based on the current conditions. Additionally, you can utilize the charts to observe the anticipated data fluctuations for the coming days, which include the overall Air Quality Index (AQI) and the variations in specific pollutants like ozone and PM2.5. With this information at your disposal, you can plan your travels wisely and stay informed about your environment.
+
+<br>
+<br>
+<br>
+
+![map](https://github.com/pumpkins628/casa0015-AirPuff/assets/146323702/f8286906-ca54-406b-bb49-ca42f9f9f3eb)
+
+<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Upon first accessing the map interface, the Air Quality Index (AQI) for your current location is displayed automatically. If you wish to learn about the air quality in other areas, simply click on the desired region on the map, and wait a moment to receive the current air quality data for that area.
 
 ## Key feature
-
-Include a section that gives intructions on how to install the app or run it in Flutter.  What versions of the plugins are you assuming?  Maybe define a licence
+- **Searh** 🔍 - 
+- **Map** 🗺️ - 
+- **Forecast chart** 📈 - 
+-  **Prompt error**⚠️
+-  **Suggestions**📝
 
 
 ## How to install(clone+具体版本信息）
